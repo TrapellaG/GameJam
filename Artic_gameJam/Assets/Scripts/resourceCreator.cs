@@ -17,8 +17,9 @@ public class resourceCreator : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        
-    }
+
+    }// now we can acces to resourceCreator.instance since it is public. Being equal to this script, resourceCreator.instance can 
+    //  be used as a reference to this script
 
     //defining the limits of where to create the resources
     public float maxX;

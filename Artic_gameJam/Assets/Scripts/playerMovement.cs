@@ -40,11 +40,12 @@ public class playerMovement : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (cans > 0)
+            resourceCreator.instance.CreateCans();
+            /*if (cans > 0)
             {
                 cans--;
                 Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
-            }
+            }*/
         }
 
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
