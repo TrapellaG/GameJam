@@ -9,6 +9,10 @@ public class playerMovement : MonoBehaviour
     public Rigidbody2D myRB;
     playerStats player;
 
+    //I believe to be better having all in one script
+    public bool health;
+    public float temperature;
+    public int cans;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,8 +34,18 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        //
+        
         float vertical = Input.GetAxis("Vertical");
+
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (cans > 0)
+            {
+                cans--;
+                Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
+            }
+        }
 
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
     }

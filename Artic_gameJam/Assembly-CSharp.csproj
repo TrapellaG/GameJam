@@ -114,8 +114,10 @@
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
+    <Compile Include="Assets\Scripts\Npc.cs" />
     <Compile Include="Assets\Scripts\playerMovement.cs" />
     <Compile Include="Assets\Scripts\playerStats.cs" />
+    <Compile Include="Assets\Scripts\resourceCreator.cs" />
     <None Include="Assets\Cinemachine\ReleaseNotes.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Usuario/Documents/GitHub/GameJam/Artic_gameJam/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
