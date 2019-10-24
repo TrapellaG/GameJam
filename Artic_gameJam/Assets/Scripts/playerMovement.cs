@@ -37,7 +37,7 @@ public class playerMovement : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            resourceCreator.instance.CreateCans();
+            //resourceCreator.instance.CreateCans();
             /*if (cans > 0)
             {
                 cans--;

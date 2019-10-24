@@ -39,7 +39,7 @@ public class resourceCreator : MonoBehaviour {
         randome = Random.Range(0, 100f);
         if (randome <= 1)
         {
-            CreateCans();
+            CreateFood();
         }
 
         randome = Random.Range(0, 100f);
