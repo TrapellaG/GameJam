@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     /*[HideInInspector]*/ public float time = 0;
     public float timeToTemperature = 1;
-
+    public bool inside;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         /*if (collision.gameObject.tag == "object")
@@ -73,11 +73,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Outside")
         {
-            DecreaseTemperature();
+            inside = false;
         }
         else if (collision.gameObject.tag == "Inside")
         {
-            IncreaseTemperature();
+            inside = true;
+            Manager.instance.changeDay();
         }
     }
 

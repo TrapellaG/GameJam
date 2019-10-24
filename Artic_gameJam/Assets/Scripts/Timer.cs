@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
 
+    public static Timer instance = null;
+
+    //now we make the instance be like this script
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(instance);
+        }
+    }
+
     Canvas timer;
     public Text countdown;
     public float time = 200.0f; 
