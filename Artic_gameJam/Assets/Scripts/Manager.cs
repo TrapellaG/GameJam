@@ -31,13 +31,45 @@ public class Manager : MonoBehaviour {
     public int necesaryFood;
     public Text foodMeter;
 
+    public bool transition;
+    public float time;
+    public GameObject transitionScreen;
+    public GameObject transitionText;
+
     // Use this for initialization
     void Start () {
         UpdateResources();
         npc = new GameObject[4];
 	}
-	
-	public void changeDay () {
+
+    private void Update()
+    {
+        if (transition == true)
+        {
+            transitionScreen.SetActive(true);
+            //transitionScreen.GetComponent<Obscure>().fadein();
+
+            time += Time.deltaTime;
+
+            if (time > 6)
+            {
+                transitionScreen.SetActive(false);
+                transitionText.SetActive(false);
+                time = 0;
+                transition = false;
+            }
+            else if (time > 2)
+            {
+                transitionText.GetComponent<Text>().text = "Day " + day.ToString();
+                transitionText.SetActive(true);
+                //transitionText.GetComponent<Obscure>().fadeinText();
+            }
+
+        }
+
+    }
+
+    public void changeDay () {
         if (Timer.instance.time <= 0)
         {
             if (Player.instance.gas < necesaryGas)

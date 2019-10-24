@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 80
   whiteFade: {fileID: 103525610}
+  text: {fileID: 0}
 --- !u!114 &103525610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +251,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000484, y: 1.0000484, z: 1.0000484}
-  m_Children: []
+  m_Children:
+  - {fileID: 1042307264}
   m_Father: {fileID: 1038524479}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -272,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 1
   whiteFade: {fileID: 138015793}
+  text: {fileID: 0}
 --- !u!114 &138015793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +734,10 @@ MonoBehaviour:
   gasMeter: {fileID: 1868692710}
   necesaryFood: 3
   foodMeter: {fileID: 398299716}
+  transition: 1
+  time: 0
+  transitionScreen: {fileID: 138015790}
+  transitionText: {fileID: 1042307263}
 --- !u!1 &501471029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1379,6 @@ RectTransform:
   - {fileID: 991933599}
   - {fileID: 1747695859}
   - {fileID: 138015791}
-  - {fileID: 1058742049}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1381,88 +1387,95 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1058742048
+--- !u!1 &1042307263
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1058742049}
-  - component: {fileID: 1058742052}
-  - component: {fileID: 1058742051}
-  - component: {fileID: 1058742050}
+  - component: {fileID: 1042307264}
+  - component: {fileID: 1042307267}
+  - component: {fileID: 1042307266}
+  - component: {fileID: 1042307265}
   m_Layer: 5
-  m_Name: fadeOut
+  m_Name: Calendar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!224 &1058742049
+--- !u!224 &1042307264
 RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1058742048}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 1042307263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000484, y: 1.0000484, z: 1.0000484}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1038524479}
-  m_RootOrder: 8
+  m_Father: {fileID: 138015791}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 4.3, y: -6.5}
+  m_SizeDelta: {x: 268.2, y: 133.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1058742050
+--- !u!114 &1042307265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1058742048}
+  m_GameObject: {fileID: 1042307263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1346f379c290ffa47abd4a35581b53d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c5c2d54af6494344a28993e7e042f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1
-  whiteFade: {fileID: 1058742051}
---- !u!114 &1058742051
+  whiteFade: {fileID: 0}
+  text: {fileID: 1042307266}
+--- !u!114 &1042307266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1058742048}
+  m_GameObject: {fileID: 1042307263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1058742052
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: db7816aee3fb8b54c894ee9ce37e5572, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Day '
+--- !u!222 &1042307267
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1058742048}
+  m_GameObject: {fileID: 1042307263}
 --- !u!1 &1235935603
 GameObject:
   m_ObjectHideFlags: 0
@@ -10838,8 +10851,8 @@ MonoBehaviour:
   health: 0
   temperature: 36.5
   maxTemperature: 36.5
-  food: 3
-  gas: 4
+  food: 89
+  gas: 68
   audioSource: {fileID: 945054306}
   time: 0
   timeToTemperature: 1
