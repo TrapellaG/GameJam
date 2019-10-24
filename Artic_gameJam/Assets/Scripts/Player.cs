@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public float temperature = 36.5f;
     public float maxTemperature;
     public int cans;
+    public int barrels;
 
     /*[HideInInspector]*/ public float time = 0;
     public float timeToTemperature = 1;
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             resourceCreator.instance.CreateCans();
             if (cans > 0)
@@ -63,7 +64,13 @@ public class Player : MonoBehaviour
                 cans--;
                 Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
             }
+        }*/
+        if (myRB.velocity.x > 0)
+        {
+            resourceCreator.instance.CreateCans();
+            resourceCreator.instance.CreateGas();
         }
+
 
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
@@ -78,6 +85,15 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.tag == "Inside")
         {
             inside = true;
+            for (int i = 0; i < cans; i++)
+            {
+                Manager.instance.food++;
+            }
+            for (int i = 0; i < barrels; i++)
+            {
+                Manager.instance.gas++;
+            }
+            
             Manager.instance.changeDay();
         }
     }
