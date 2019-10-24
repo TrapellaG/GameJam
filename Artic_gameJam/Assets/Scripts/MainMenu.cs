@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
 
     public Button playButton;
     public Button controlsButton;
-    public string level = "SampleScene";
+    string level = "SampleScene";
     public Button exitButton;
     public GameObject panel;
 
