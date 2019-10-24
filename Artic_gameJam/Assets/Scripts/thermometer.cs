@@ -4,6 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class thermometer : MonoBehaviour {
+    public static thermometer instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(instance);
+        }
+    }
 
     Canvas temperature;
     public Slider temperatureSlider;
