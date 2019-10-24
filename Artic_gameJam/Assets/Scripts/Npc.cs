@@ -19,7 +19,7 @@ public class Npc : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            line = LineManager.instance.lines[number][round];
+            //line = LineManager.instance.lines[number][round];
 
             //Player.instance.SetLine();
             //Player.instance

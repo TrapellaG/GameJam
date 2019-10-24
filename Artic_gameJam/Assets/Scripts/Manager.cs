@@ -32,7 +32,7 @@ public class Manager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        UpdateMeters();
+        UpdateResources();
         npc = new GameObject[4];
 	}
 	
@@ -55,7 +55,7 @@ public class Manager : MonoBehaviour {
         }
 	}
 
-    public void UpdateMeters()
+    public void UpdateResources()
     {
         gasMeter.text = Player.instance.gas.ToString() + "/" + necesaryGas.ToString();
         foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();

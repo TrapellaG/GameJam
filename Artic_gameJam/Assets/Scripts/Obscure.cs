@@ -18,7 +18,7 @@ public class Obscure : MonoBehaviour {
     public void fadein()
     {
 
-        whiteFade.CrossFadeAlpha(1, 2, false);
+        whiteFade.CrossFadeAlpha(1, 200, false);
 
 
 

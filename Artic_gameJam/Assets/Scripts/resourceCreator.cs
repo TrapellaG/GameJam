@@ -28,13 +28,24 @@ public class resourceCreator : MonoBehaviour {
     public float maxY;
     public float minY;
 
+    public float time;
+    public float maxTime;
+
     public GameObject food;
     public GameObject gas;
 
     //here the class will create in random positions clones of the food and gas
     public void CreateItems()
     {
-        float randome;
+        time += Time.deltaTime;
+        if (time >= maxTime)
+        {
+            time = 0;
+
+            CreateFood();
+            CreateGas();
+        }
+        /*float randome;
 
         randome = Random.Range(0, 100f);
         if (randome <= 1)
@@ -43,10 +54,10 @@ public class resourceCreator : MonoBehaviour {
         }
 
         randome = Random.Range(0, 100f);
-        if (randome <= 1)
+        if (randome == 0)
         {
             CreateGas();
-        }
+        }*/
     }
 
     public void CreateFood()

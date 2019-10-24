@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public int food;
     public int gas;
 
+    public AudioSource audioSource;
+
     /*[HideInInspector]*/ public float time = 0;
     public float timeToTemperature = 1;
     public bool inside;
@@ -70,10 +72,17 @@ public class Player : MonoBehaviour
                 Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
             }
         }*/
-        if (myRB.velocity.x > 0)
+        if (myRB.velocity.x != 0)
         {
-            resourceCreator.instance.CreateFood();
-            resourceCreator.instance.CreateGas();
+            resourceCreator.instance.CreateItems();
+            //resourceCreator.instance.CreateFood();
+            //resourceCreator.instance.CreateGas();
+        }
+        else if (myRB.velocity.y != 0)
+        {
+            resourceCreator.instance.CreateItems();
+            //resourceCreator.instance.CreateFood();
+            //resourceCreator.instance.CreateGas();
         }
 
 
@@ -86,10 +95,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Outside")
         {
             inside = false;
+            audioSource.Play();
         }
         else if (collision.gameObject.tag == "Inside")
         {
             inside = true;
+            audioSource.Stop();
             /*for (int i = 0; i < food; i++)
             {
                 Manager.instance.food++;
@@ -100,17 +111,19 @@ public class Player : MonoBehaviour
                 Manager.instance.gas++;
                 //gas = 0;
             }*/
-            
+            Manager.instance.UpdateResources();
             Manager.instance.changeDay();
         }
 
         if (collision.gameObject.tag == "food")
         {
             food++;
+            Destroy(collision.gameObject);
         }
         else if (collision.gameObject.tag == "gas")
         {
             gas++;
+            Destroy(collision.gameObject);
         }
     }
 
