@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Object
   - object
+  - Outside
   layers:
   - Default
   - TransparentFX

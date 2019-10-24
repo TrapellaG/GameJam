@@ -22,16 +22,15 @@ public class Player : MonoBehaviour
 
     public float speed;
     public Rigidbody2D myRB;
-    playerStats player;
 
     //I believe to be better having all in one script
     public bool health;
-    public float temperature;
+    public float temperature = 36.5f;
     public float maxTemperature;
     public int cans;
 
-    [HideInInspector] public float time = 0;
-    public float timeToTemperature;
+    /*[HideInInspector]*/ public float time = 0;
+    public float timeToTemperature = 1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -46,14 +45,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
-        //player = GetComponent<playerStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-
         float vertical = Input.GetAxis("Vertical");
 
 
@@ -78,7 +75,7 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Inside")
         {
-
+            IncreaseTemperature();
         }
     }
 
@@ -90,6 +87,7 @@ public class Player : MonoBehaviour
         {
             time = 0;
             temperature--;
+            Debug.Log("temperature--");
         }
     }
 

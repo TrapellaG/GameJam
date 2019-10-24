@@ -7,7 +7,6 @@ public class playerMovement : MonoBehaviour
 
     public float speed;
     public Rigidbody2D myRB;
-    playerStats player;
 
     //I believe to be better having all in one script
     public bool health;
@@ -19,7 +18,6 @@ public class playerMovement : MonoBehaviour
         if (collision.gameObject.tag == "object")
         {
             Destroy(collision.gameObject);
-            player.increaseCans();
         }
     }
 
@@ -27,7 +25,6 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
-        player = GetComponent<playerStats>();
     }
 
     // Update is called once per frame
