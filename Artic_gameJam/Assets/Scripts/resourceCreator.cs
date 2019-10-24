@@ -34,8 +34,19 @@ public class resourceCreator : MonoBehaviour {
     //here the class will create in random positions clones of the food and gas
     public void CreateItems()
     {
-        CreateCans();
-        CreateGas();
+        float randome;
+
+        randome = Random.Range(0, 100f);
+        if (randome <= 5)
+        {
+            CreateCans();
+        }
+
+        randome = Random.Range(0, 100f);
+        if (randome <= 5)
+        {
+            CreateGas();
+        }
     }
 
     public void CreateCans()

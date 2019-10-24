@@ -54,7 +54,7 @@ public class Manager : MonoBehaviour {
 
     public void killNpc()
     {
-        Destroy();
+        //Destroy();
     }
 
 }
