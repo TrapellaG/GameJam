@@ -6,7 +6,10 @@ public class Player : MonoBehaviour
 {
     //Player is created on a variable called instance
     public static Player instance = null;
-
+    public Animator animator;
+    bool facingright = true;
+    SpriteRenderer myRenderer;
+    
     //now we make the instance be like this script
     private void Awake()
     {
@@ -48,12 +51,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
+        myRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -85,10 +91,26 @@ public class Player : MonoBehaviour
             //resourceCreator.instance.CreateGas();
         }
 
+        if (horizontal > 0 && !facingright)
+        {
+            Flip();
+        }
+        else if (horizontal < 0 && facingright)
+        {
+            Flip();
+        }
 
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
+
+        animator.SetFloat("walkingY", Mathf.Abs(horizontal));
+        animator.SetFloat("walking", Mathf.Abs(vertical));
     }
 
+    void Flip()
+    {
+        facingright = !facingright;
+        myRenderer.flipX = !myRenderer.flipX;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
