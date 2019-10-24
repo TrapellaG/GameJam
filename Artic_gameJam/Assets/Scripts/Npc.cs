@@ -16,7 +16,7 @@ public class Npc : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            
+            //Player.instance
             //talk.setActive(true);
         }
     }
