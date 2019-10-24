@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour {
 
@@ -23,38 +24,50 @@ public class Manager : MonoBehaviour {
 
     public GameObject[] npc;
 
-    public float gas;
-    public float necesaryGas;
-    public float food;
-    public float necesaryFood;
+    public int necesaryGas;
+    public Text gasMeter;
+
+    public int necesaryFood;
+    public Text foodMeter;
 
     // Use this for initialization
     void Start () {
+        UpdateMeters();
         npc = new GameObject[4];
 	}
 	
 	public void changeDay () {
         if (Timer.instance.time >= 0)
         {
-            if (gas < necesaryGas)
+            if (Player.instance.gas < necesaryGas)
             {
                 //game over
             }
-            else if (food < necesaryFood)
+            else if (Player.instance.food < necesaryFood)
             {
                 //game over
             }
 
-            food -= necesaryFood;
-            gas -= necesaryGas;
+            Player.instance.food -= necesaryFood;
+            Player.instance.gas -= necesaryGas;
 
             day++;
         }
 	}
 
-    public void killNpc()
+    public void UpdateMeters()
+    {
+        gasMeter.text = Player.instance.gas.ToString() + "/" + necesaryGas.ToString();
+        foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();
+    }
+
+    public void KillNpc()
     {
         //Destroy();
     }
 
+    public void GameOver()
+    {
+
+    }
 }

@@ -27,8 +27,8 @@ public class Player : MonoBehaviour
     public bool health;
     public float temperature = 36.5f;
     public float maxTemperature;
-    public int cans;
-    public int barrels;
+    public int food;
+    public int gas;
 
     /*[HideInInspector]*/ public float time = 0;
     public float timeToTemperature = 1;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         /*if (collision.gameObject.tag == "object")
         {
             Destroy(collision.gameObject);
-            player.increaseCans();
+            player.increasefood();
         }*/
     }
 
@@ -55,19 +55,24 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-
+        if (inside == true)
+        {
+            IncreaseTemperature();
+        }
+        else
+            DecreaseTemperature();
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
-            resourceCreator.instance.CreateCans();
-            if (cans > 0)
+            resourceCreator.instance.Createfood();
+            if (food > 0)
             {
-                cans--;
+                food--;
                 Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
             }
         }*/
         if (myRB.velocity.x > 0)
         {
-            resourceCreator.instance.CreateCans();
+            resourceCreator.instance.CreateFood();
             resourceCreator.instance.CreateGas();
         }
 
@@ -76,7 +81,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Outside")
         {
@@ -85,16 +90,27 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.tag == "Inside")
         {
             inside = true;
-            for (int i = 0; i < cans; i++)
+            /*for (int i = 0; i < food; i++)
             {
                 Manager.instance.food++;
+                //food = 0;
             }
-            for (int i = 0; i < barrels; i++)
+            for (int i = 0; i < gas; i++)
             {
                 Manager.instance.gas++;
-            }
+                //gas = 0;
+            }*/
             
             Manager.instance.changeDay();
+        }
+
+        if (collision.gameObject.tag == "food")
+        {
+            food++;
+        }
+        else if (collision.gameObject.tag == "gas")
+        {
+            gas++;
         }
     }
 
