@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf101bb4c01a7994d8998eeafbf42405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteFade: {fileID: 103525610}
 --- !u!114 &103525610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10671,7 +10670,7 @@ MonoBehaviour:
   myRB: {fileID: 0}
   health: 0
   temperature: 36.5
-  maxTemperature: 0
+  maxTemperature: 36.5
   food: 0
   gas: 0
   audioSource: {fileID: 945054306}

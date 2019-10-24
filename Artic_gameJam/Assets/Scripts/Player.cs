@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     //I believe to be better having all in one script
     public bool health;
     public float temperature = 36.5f;
-    public float maxTemperature;
+    public float maxTemperature = 36.5f;
     public int food;
     public int gas;
 
@@ -138,13 +138,11 @@ public class Player : MonoBehaviour
 
     public void IncreaseTemperature()
     {
-        time += Time.deltaTime;
-
         if (time >= timeToTemperature)
         {
-            time = 0;
             if (temperature < maxTemperature)
             {
+                time = 0;
                 temperature++;
             }
         }
