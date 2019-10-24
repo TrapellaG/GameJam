@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public static Player instance = null;
     public Animator animator;
     bool facingright = true;
+    bool facingFront = false;
+    bool facingBack = false;
     SpriteRenderer myRenderer;
 
     //now we make the instance be like this script
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
                 //resourceCreator.instance.CreateGas();
             }
 
-            if (temperature < 0)
+            if (temperature <= 0)
             {
                 SceneManager.LoadScene("GameOver");
             }
@@ -110,6 +112,15 @@ public class Player : MonoBehaviour
             Flip();
         }
 
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            animator.SetTrigger("walkingBack");
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            animator.SetTrigger("walkingFront");
+        }
+
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
 
         animator.SetFloat("walkingY", Mathf.Abs(horizontal));
@@ -121,7 +132,7 @@ public class Player : MonoBehaviour
         facingright = !facingright;
         myRenderer.flipX = !myRenderer.flipX;
     }
-
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
