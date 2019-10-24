@@ -84,6 +84,10 @@ public class Player : MonoBehaviour
         }*/
         if (!inside)
         {
+            if (Manager.instance.day == 0)
+            {
+                Day0();
+            }
             if (myRB.velocity.x != 0)
             {
                 resourceCreator.instance.CreateItems();
@@ -198,5 +202,12 @@ public class Player : MonoBehaviour
                 temperature++;
             }
         }
+    }
+
+    void Day0()
+    {
+        snow.gameObject.SetActive(false);
+        audioSource.gameObject.SetActive(false);
+        thermometer.instance.gameObject.SetActive(false);
     }
 }
