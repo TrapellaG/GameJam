@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class Npc : MonoBehaviour {
 
-    public string text;
+    public int number;
+    public int round;
+    public string line;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +19,9 @@ public class Npc : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
+            line = LineManager.instance.lines[number][round];
+
+            //Player.instance.SetLine();
             //Player.instance
             //talk.setActive(true);
         }
