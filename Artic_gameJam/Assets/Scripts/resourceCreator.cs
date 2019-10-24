@@ -37,19 +37,19 @@ public class resourceCreator : MonoBehaviour {
         float randome;
 
         randome = Random.Range(0, 100f);
-        if (randome <= 5)
+        if (randome <= 1)
         {
             CreateCans();
         }
 
         randome = Random.Range(0, 100f);
-        if (randome <= 5)
+        if (randome <= 1)
         {
             CreateGas();
         }
     }
 
-    public void CreateCans()
+    public void CreateFood()
     {
         GameObject can = Instantiate(food);
         can.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);

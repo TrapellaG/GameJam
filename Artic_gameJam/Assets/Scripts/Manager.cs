@@ -24,12 +24,10 @@ public class Manager : MonoBehaviour {
 
     public GameObject[] npc;
 
-    public float gas;
-    public float necesaryGas;
+    public int necesaryGas;
     public Text gasMeter;
 
-    public float food;
-    public float necesaryFood;
+    public int necesaryFood;
     public Text foodMeter;
 
     // Use this for initialization
@@ -41,17 +39,17 @@ public class Manager : MonoBehaviour {
 	public void changeDay () {
         if (Timer.instance.time >= 0)
         {
-            if (gas < necesaryGas)
+            if (Player.instance.gas < necesaryGas)
             {
                 //game over
             }
-            else if (food < necesaryFood)
+            else if (Player.instance.food < necesaryFood)
             {
                 //game over
             }
 
-            food -= necesaryFood;
-            gas -= necesaryGas;
+            Player.instance.food -= necesaryFood;
+            Player.instance.gas -= necesaryGas;
 
             day++;
         }
@@ -59,8 +57,8 @@ public class Manager : MonoBehaviour {
 
     public void UpdateMeters()
     {
-        gasMeter.text = gas.ToString() + "/" + necesaryGas.ToString();
-        foodMeter.text = food.ToString() + "/" + necesaryFood.ToString();
+        gasMeter.text = Player.instance.gas.ToString() + "/" + necesaryGas.ToString();
+        foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();
     }
 
     public void KillNpc()
