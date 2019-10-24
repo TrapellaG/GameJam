@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
     /*[HideInInspector]*/ public float time = 0;
     public float timeToTemperature = 1;
+    private bool inside = true;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -54,6 +55,12 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        if (inside == true)
+        {
+            IncreaseTemperature();
+        }
+        else
+            DecreaseTemperature();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -68,15 +75,15 @@ public class Player : MonoBehaviour
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Outside")
         {
-            DecreaseTemperature();
+            inside = false;
         }
         else if (collision.gameObject.tag == "Inside")
         {
-            IncreaseTemperature();
+            inside = true;
         }
     }
 
