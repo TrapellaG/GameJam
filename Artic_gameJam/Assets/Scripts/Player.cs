@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
 
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Outside")
