@@ -31,6 +31,9 @@ public class Manager : MonoBehaviour {
     public int necesaryFood;
     public Text foodMeter;
 
+    public Text conversation;
+    public float converationLifetime;
+
     public bool transition;
     public float time;
     public GameObject transitionScreen;
@@ -38,12 +41,24 @@ public class Manager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        conversation.text = "";
         UpdateResources();
         npc = new GameObject[4];
 	}
 
     private void Update()
     {
+        if (conversation.text != "")
+        {
+            converationLifetime += Time.deltaTime;
+
+            if (converationLifetime > 10)
+            {
+                conversation.text = "";
+                converationLifetime = 0;
+            }
+        }
+
         if (transition == true)
         {
             transitionScreen.SetActive(true);
@@ -99,9 +114,9 @@ public class Manager : MonoBehaviour {
         foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();
     }
 
-    public void KillNpc()
+    public void SetLevel()
     {
-        //Destroy();
+        
     }
 
     public void GameOver()

@@ -31,9 +31,11 @@ public class Player : MonoBehaviour
     public int food;
     public int gas;
 
+    public ParticleSystem snow;
+
     public AudioSource audioSource;
 
-    /*[HideInInspector]*/ public float time = 0;
+    public float time = 0;
     public float timeToTemperature = 1;
     public bool inside;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -104,9 +106,11 @@ public class Player : MonoBehaviour
         {
             inside = false;
             audioSource.Play();
+            snow.startColor = new Color(snow.startColor.r, snow.startColor.g, snow.startColor.b, 1f);
         }
         else if (collision.gameObject.tag == "Inside")
         {
+            snow.startColor = new Color(snow.startColor.r, snow.startColor.g, snow.startColor.b, 0);
             inside = true;
             audioSource.Stop();
             /*for (int i = 0; i < food; i++)
@@ -133,6 +137,12 @@ public class Player : MonoBehaviour
             gas++;
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "npc")
+        {
+            Manager.instance.conversation.text = collision.gameObject.GetComponent<Npc>().line[Manager.instance.day];
+        }
+
+
     }
 
     public void DecreaseTemperature()
