@@ -158,7 +158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &103525608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5c2d54af6494344a28993e7e042f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 80
+  duration: 100
   whiteFade: {fileID: 103525610}
   text: {fileID: 0}
 --- !u!114 &103525610
@@ -728,8 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42831df9795d1d40a07134b9bbfc97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  day: 1
-  npc: []
+  day: 0
   necesaryGas: 3
   gasMeter: {fileID: 1868692710}
   necesaryFood: 3
@@ -6237,6 +6236,8 @@ MonoBehaviour:
   maxTemperature: 36.5
   food: 89
   gas: 68
+  gasCanister: {fileID: 0}
+  gasText: {fileID: 0}
   snow: {fileID: 1235935606}
   audioSource: {fileID: 945054306}
   time: 0
@@ -6327,7 +6328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1441296807
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6772,10 +6773,10 @@ MonoBehaviour:
   number: 0
   round: 0
   line:
-  - Hey, we are low on food, can you go to the warehouse and grab a bunch of cans?
+  - Hey, we need food, go to the warehouse and grab a bunch of cans. Use WASD to move.
   - Listen, something has taken Thomas. He was going to get fuel for heating, but
     it took him. You get fuel and food and i fix the radio, deal?
-  - We are not going to make it, right?
+  - We are not going to make it, right? I'm sorry.
 --- !u!50 &2069499153
 Rigidbody2D:
   serializedVersion: 4

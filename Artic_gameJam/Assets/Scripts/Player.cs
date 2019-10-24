@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     public int food;
     public int gas;
 
+    public GameObject gasCanister;
+    public GameObject gasText;
+
     public ParticleSystem snow;
 
     public AudioSource audioSource;
@@ -66,17 +69,14 @@ public class Player : MonoBehaviour
         }
         else
             DecreaseTemperature();
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            resourceCreator.instance.Createfood();
-            if (food > 0)
-            {
-                food--;
-                Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
-            }
-        }*/
+        
+
         if (!inside)
         {
+            if (Manager.instance.day == 0)
+            {
+                Day0();
+            }
             if (myRB.velocity.x != 0)
             {
                 resourceCreator.instance.CreateItems();
@@ -164,5 +164,12 @@ public class Player : MonoBehaviour
                 temperature++;
             }
         }
+    }
+
+    void Day0()
+    {
+        snow.gameObject.SetActive(false);
+        audioSource.gameObject.SetActive(false);
+        thermometer.instance.gameObject.SetActive(false);
     }
 }

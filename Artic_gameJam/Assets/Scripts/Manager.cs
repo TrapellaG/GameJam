@@ -23,7 +23,7 @@ public class Manager : MonoBehaviour {
 
     public int day;
 
-    public GameObject[] npc;
+    //public GameObject[] npc;
 
     public int necesaryGas;
     public Text gasMeter;
@@ -43,7 +43,7 @@ public class Manager : MonoBehaviour {
     void Start () {
         conversation.text = "";
         UpdateResources();
-        npc = new GameObject[4];
+        //npc = new GameObject[4];
 	}
 
     private void Update()
@@ -85,38 +85,60 @@ public class Manager : MonoBehaviour {
     }
 
     public void changeDay () {
-        if (Timer.instance.time <= 0)
+        if (day == 0)
         {
-            if (Player.instance.gas < necesaryGas)
+            if (Player.instance.food > 1)
             {
-                GameOver();
+                day++;
+                ResetStuff();
             }
-            else if (Player.instance.food < necesaryFood)
-            {
-                GameOver();
-            }
-
-            Player.instance.food -= necesaryFood;
-            Player.instance.gas -= necesaryGas;
-
-            UpdateResources();
-
-            Timer.instance.maxTime -= 10;
-            Timer.instance.time = Timer.instance.maxTime;
-
-            day++;
         }
-	}
+        else if (day == 1)
+        {
+            if (Timer.instance.time <= 0)
+            {
+                if (Player.instance.gas < necesaryGas)
+                {
+                    GameOver();
+                }
+                else if (Player.instance.food < necesaryFood)
+                {
+                    GameOver();
+                }
+
+                ResetStuff();
+
+                day++;
+            }
+        }
+        else
+            SceneManager.LoadScene("Final");
+    }
 
     public void UpdateResources()
     {
-        gasMeter.text = Player.instance.gas.ToString() + "/" + necesaryGas.ToString();
-        foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();
+        if (day > 0)
+        {
+            gasMeter.text = Player.instance.gas.ToString() + "/" + necesaryGas.ToString();
+            foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();
+        }
+        else
+            foodMeter.text = Player.instance.food.ToString() + "/" + necesaryFood.ToString();
     }
 
-    public void SetLevel()
+    public void ResetStuff()
     {
-        
+        transition = true;
+
+        Player.instance.food -= necesaryFood;
+        Player.instance.gas -= necesaryGas;
+
+        UpdateResources();
+
+        Timer.instance.maxTime -= 10;
+        Timer.instance.time = Timer.instance.maxTime;
+
+        Player.instance.temperature = Player.instance.maxTemperature;
     }
 
     public void GameOver()
