@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -72,20 +73,27 @@ public class Player : MonoBehaviour
                 Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
             }
         }*/
-        if (myRB.velocity.x != 0)
+        if (!inside)
         {
-            resourceCreator.instance.CreateItems();
-            //resourceCreator.instance.CreateFood();
-            //resourceCreator.instance.CreateGas();
-        }
-        else if (myRB.velocity.y != 0)
-        {
-            resourceCreator.instance.CreateItems();
-            //resourceCreator.instance.CreateFood();
-            //resourceCreator.instance.CreateGas();
-        }
+            if (myRB.velocity.x != 0)
+            {
+                resourceCreator.instance.CreateItems();
+                //resourceCreator.instance.CreateFood();
+                //resourceCreator.instance.CreateGas();
+            }
+            else if (myRB.velocity.y != 0)
+            {
+                resourceCreator.instance.CreateItems();
+                //resourceCreator.instance.CreateFood();
+                //resourceCreator.instance.CreateGas();
+            }
 
-
+            if (temperature < 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+        }
+        
         myRB.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
 

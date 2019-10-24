@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour {
 
@@ -37,19 +38,24 @@ public class Manager : MonoBehaviour {
 	}
 	
 	public void changeDay () {
-        if (Timer.instance.time >= 0)
+        if (Timer.instance.time <= 0)
         {
             if (Player.instance.gas < necesaryGas)
             {
-                //game over
+                GameOver();
             }
             else if (Player.instance.food < necesaryFood)
             {
-                //game over
+                GameOver();
             }
 
             Player.instance.food -= necesaryFood;
             Player.instance.gas -= necesaryGas;
+
+            UpdateResources();
+
+            Timer.instance.maxTime -= 10;
+            Timer.instance.time = Timer.instance.maxTime;
 
             day++;
         }
@@ -68,6 +74,6 @@ public class Manager : MonoBehaviour {
 
     public void GameOver()
     {
-
+        SceneManager.LoadScene("GameOver");
     }
 }
