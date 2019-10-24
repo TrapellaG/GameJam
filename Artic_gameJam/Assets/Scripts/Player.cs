@@ -55,7 +55,12 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-
+        if (inside == true)
+        {
+            IncreaseTemperature();
+        }
+        else
+            DecreaseTemperature();
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
             resourceCreator.instance.CreateCans();
