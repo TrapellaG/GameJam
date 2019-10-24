@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -81,13 +82,10 @@ public class Player : MonoBehaviour
 
     public void DecreaseTemperature()
     {
-        time += Time.deltaTime;
-
         if (time >= timeToTemperature)
         {
             time = 0;
             temperature--;
-            Debug.Log("temperature--");
         }
     }
 
