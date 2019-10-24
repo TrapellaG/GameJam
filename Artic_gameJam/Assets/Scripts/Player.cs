@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     bool facingright = true;
     SpriteRenderer myRenderer;
-    
+
     //now we make the instance be like this script
     private void Awake()
     {
@@ -33,9 +34,11 @@ public class Player : MonoBehaviour
     public int food;
     public int gas;
 
+    public ParticleSystem snow;
+
     public AudioSource audioSource;
 
-    /*[HideInInspector]*/ public float time = 0;
+    public float time = 0;
     public float timeToTemperature = 1;
     public bool inside;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,7 +62,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -78,17 +80,25 @@ public class Player : MonoBehaviour
                 Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
             }
         }*/
-        if (myRB.velocity.x != 0)
+        if (!inside)
         {
-            resourceCreator.instance.CreateItems();
-            //resourceCreator.instance.CreateFood();
-            //resourceCreator.instance.CreateGas();
-        }
-        else if (myRB.velocity.y != 0)
-        {
-            resourceCreator.instance.CreateItems();
-            //resourceCreator.instance.CreateFood();
-            //resourceCreator.instance.CreateGas();
+            if (myRB.velocity.x != 0)
+            {
+                resourceCreator.instance.CreateItems();
+                //resourceCreator.instance.CreateFood();
+                //resourceCreator.instance.CreateGas();
+            }
+            else if (myRB.velocity.y != 0)
+            {
+                resourceCreator.instance.CreateItems();
+                //resourceCreator.instance.CreateFood();
+                //resourceCreator.instance.CreateGas();
+            }
+
+            if (temperature < 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
         }
 
         if (horizontal > 0 && !facingright)
@@ -112,15 +122,18 @@ public class Player : MonoBehaviour
         myRenderer.flipX = !myRenderer.flipX;
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Outside")
         {
             inside = false;
             audioSource.Play();
+            snow.startColor = new Color(snow.startColor.r, snow.startColor.g, snow.startColor.b, 1f);
         }
         else if (collision.gameObject.tag == "Inside")
         {
+            snow.startColor = new Color(snow.startColor.r, snow.startColor.g, snow.startColor.b, 0);
             inside = true;
             audioSource.Stop();
             /*for (int i = 0; i < food; i++)
@@ -147,6 +160,12 @@ public class Player : MonoBehaviour
             gas++;
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "npc")
+        {
+            Manager.instance.conversation.text = collision.gameObject.GetComponent<Npc>().line[Manager.instance.day];
+        }
+
+
     }
 
     public void DecreaseTemperature()

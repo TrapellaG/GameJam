@@ -23,6 +23,7 @@ public class Timer : MonoBehaviour {
     Canvas timer;
     public Text countdown;
     public float time = 200.0f; 
+    public float maxTime = 200.0f; 
 
 	// Use this for initialization
 	void Start ()
