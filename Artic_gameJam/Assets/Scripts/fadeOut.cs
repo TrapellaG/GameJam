@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class fadeOut : MonoBehaviour
 {
-    public float duration;
 
     public Image whiteFade;
     // Start is called before the first frame update
@@ -17,8 +16,8 @@ public class fadeOut : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void fadeout()
+    void fadeout()
     {
-        whiteFade.CrossFadeAlpha(0, duration, false);
+        whiteFade.CrossFadeAlpha(0, 1, false);
     }
 }

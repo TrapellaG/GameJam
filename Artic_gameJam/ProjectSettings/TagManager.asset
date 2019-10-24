@@ -7,10 +7,6 @@ TagManager:
   - Object
   - object
   - Outside
-  - Inside
-  - gas
-  - food
-  - npc
   layers:
   - Default
   - TransparentFX
