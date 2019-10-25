@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &64188047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000011920929, y: 0.00000047683716}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64188048
@@ -538,7 +538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &223002374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -904,6 +904,7 @@ MonoBehaviour:
   transitionScreen: {fileID: 138015790}
   transitionText: {fileID: 1042307263}
   timer: {fileID: 1441296809}
+  timeToDie: 5
 --- !u!1 &501471029
 GameObject:
   m_ObjectHideFlags: 0
@@ -6656,7 +6657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73200005, y: 0.83520526}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.830017, y: 3.4436035}
+  m_AnchoredPosition: {x: 6.8300476, y: 3.4436035}
   m_SizeDelta: {x: 113.97, y: 12.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441296808
@@ -7284,6 +7285,7 @@ GameObject:
   - component: {fileID: 2069499154}
   - component: {fileID: 2069499153}
   - component: {fileID: 2069499152}
+  - component: {fileID: 2069499157}
   m_Layer: 0
   m_Name: Npc1
   m_TagString: npc
@@ -7309,6 +7311,7 @@ MonoBehaviour:
   - Listen, something has taken Thomas. He was going to get fuel for heating, but
     it took him. You get fuel and food and i fix the radio, deal?
   - We are not going to make it, right?
+  animator: {fileID: 0}
 --- !u!50 &2069499153
 Rigidbody2D:
   serializedVersion: 4
@@ -7341,18 +7344,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.044157982, y: -0.41860104}
+  m_Offset: {x: 0.042814493, y: 0.07160765}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.51, y: 1.38}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.963913, y: 8.1418705}
+  m_Size: {x: 4.033949, y: 3.4611492}
   m_EdgeRadius: 0
 --- !u!212 &2069499155
 SpriteRenderer:
@@ -7389,8 +7392,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0a849d215e360254585785f2c56c5f07, type: 3}
-  m_Color: {r: 0, g: 0.13945818, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b2c0b5070bb8dc744a8c657763e3b946, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7406,9 +7409,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2069499151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.69, y: 5.09, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6.9, y: 5.32, z: 0}
+  m_LocalScale: {x: 2.1394389, y: 2.1394389, z: 2.1394389}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2069499157
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069499151}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52ec99379ef795640b7079ce854f0af4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

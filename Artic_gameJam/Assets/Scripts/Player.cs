@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
     public float time = 0;
     public float timeToTemperature = 1;
+    bool die;
+    float timeToDie = 3;
     public bool inside;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        animator.SetBool("dead", false);
     }
 
     // Update is called once per frame
@@ -102,7 +105,8 @@ public class Player : MonoBehaviour
             
             if (temperature <= 0)
             {
-                SceneManager.LoadScene("GameOver");
+                animator.SetTrigger("death");
+                timeToDie -= Time.deltaTime;
             }
         }
 
@@ -128,6 +132,11 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("walkingY", Mathf.Abs(horizontal));
         animator.SetFloat("walking", Mathf.Abs(vertical));
+
+        if(timeToDie <=0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     void Flip()
@@ -183,6 +192,16 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+
+    public void dead()
+    {
+        animator.SetBool("dead", true);
+
+        if (timeToDie <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     public void DecreaseTemperature()
