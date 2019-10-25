@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        animator.SetBool("dead", false);
+        
     }
 
     // Update is called once per frame
@@ -71,13 +71,16 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (inside == true)
+        if (Manager.instance.day > 0)
         {
-            IncreaseTemperature();
+            if (inside == true)
+            {
+                IncreaseTemperature();
+            }
+            else
+                DecreaseTemperature();
         }
-        else
-            DecreaseTemperature();
-        
+                
 
         if (!inside)
         {
@@ -105,7 +108,7 @@ public class Player : MonoBehaviour
             
             if (temperature <= 0)
             {
-                animator.SetTrigger("death");
+                animator.SetTrigger("dead");
                 timeToDie -= Time.deltaTime;
             }
         }

@@ -55,7 +55,6 @@ public class Manager : MonoBehaviour {
 
     private void Update()
     {
-        time += Time.deltaTime;
 
         if (conversation.text != "")
         {
@@ -92,6 +91,8 @@ public class Manager : MonoBehaviour {
             }
             else if (time > 2)
             {
+                Player.instance.snow.gameObject.SetActive(true);
+
                 transitionText.GetComponent<Text>().text = "Day " + (day + 1).ToString();
                 transitionText.SetActive(true);
             }
