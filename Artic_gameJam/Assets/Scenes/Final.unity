@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &141160928
 Transform:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ccbaab79c342ba740b4dc448cfcdccde, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.625
   m_Pitch: 1
@@ -367,12 +367,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 333059981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4916b4d39b85ef04188474c6c94be41e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a992a30b7bdd1f4caca9891719bfa45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   line:
   - I'm sorry I couldn't fix the radio.
-  - I... I just couldn't
+  - Just close your eyes, okay?
 --- !u!1 &669066678
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +884,7 @@ SpriteRenderer:
   m_Size: {x: 9.6, y: 5.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1628255045
 GameObject:
@@ -895,6 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628255047}
   - component: {fileID: 1628255046}
+  - component: {fileID: 1628255048}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -913,13 +914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd43b6e6badc32419d30d19fdb04377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
-  timeToTalk: 3
-  timeToTalkAgain: 0
-  timeToDie: 9
-  finalNpc: {fileID: 333059986}
-  narration: {fileID: 669066680}
-  fade: {fileID: 1357230543}
 --- !u!4 &1628255047
 Transform:
   m_ObjectHideFlags: 0
@@ -933,6 +927,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628255048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1628255045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbe27e607b31c14ea2e90781953dad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  timeToTalk: 1
+  timeToTalkAgain: 5
+  timeToDie: 7
+  finalNpc: {fileID: 333059986}
+  narration: {fileID: 669066680}
+  fade: {fileID: 0}
 --- !u!1 &1882476148
 GameObject:
   m_ObjectHideFlags: 0
