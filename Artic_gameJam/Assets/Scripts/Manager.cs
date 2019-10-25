@@ -42,6 +42,8 @@ public class Manager : MonoBehaviour {
 
     public Text timer;
 
+    public float timeToDie = 5;
+
     // Use this for initialization
     void Start () {
         conversation.text = "";
@@ -53,6 +55,8 @@ public class Manager : MonoBehaviour {
 
     private void Update()
     {
+        time += Time.deltaTime;
+
         if (conversation.text != "")
         {
             converationLifetime += Time.deltaTime;
@@ -117,10 +121,14 @@ public class Manager : MonoBehaviour {
             {
                 if (Player.instance.gas < necesaryGas)
                 {
-                    GameOver();
+                    Player.instance.dead();
+                    time = 0;
+                    if (time >= timeToDie)
+                        GameOver();
                 }
                 else if (Player.instance.food < necesaryFood)
                 {
+                    Player.instance.dead();
                     GameOver();
                 }   
             }
