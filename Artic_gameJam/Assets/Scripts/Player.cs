@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     public ParticleSystem snow;
 
     public AudioSource audioSource;
+    public AudioSource pickup;
 
     public float time = 0;
     public float timeToTemperature = 1;
@@ -73,34 +74,32 @@ public class Player : MonoBehaviour
         }
         else
             DecreaseTemperature();
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            resourceCreator.instance.Createfood();
-            if (food > 0)
-            {
-                food--;
-                Instantiate(resourceCreator.instance.food, transform.position + new Vector3(0, -2, 0), transform.rotation, null);
-            }
-        }*/
+        
+
         if (!inside)
         {
+            //if it is the first day...
             if (Manager.instance.day == 0)
             {
                 Day0();
             }
-            if (myRB.velocity.x != 0)
+            else if (Manager.instance.day > 0)
             {
-                resourceCreator.instance.CreateItems();
-                //resourceCreator.instance.CreateFood();
-                //resourceCreator.instance.CreateGas();
+                Day1();
+                if (myRB.velocity.x != 0)
+                {
+                    resourceCreator.instance.CreateItems();
+                    //resourceCreator.instance.CreateFood();
+                    //resourceCreator.instance.CreateGas();
+                }
+                else if (myRB.velocity.y != 0)
+                {
+                    resourceCreator.instance.CreateItems();
+                    //resourceCreator.instance.CreateFood();
+                    //resourceCreator.instance.CreateGas();
+                }
             }
-            else if (myRB.velocity.y != 0)
-            {
-                resourceCreator.instance.CreateItems();
-                //resourceCreator.instance.CreateFood();
-                //resourceCreator.instance.CreateGas();
-            }
-
+            
             if (temperature <= 0)
             {
                 SceneManager.LoadScene("GameOver");
@@ -144,23 +143,24 @@ public class Player : MonoBehaviour
         {
             inside = false;
             audioSource.Play();
-            snow.startColor = new Color(snow.startColor.r, snow.startColor.g, snow.startColor.b, 1f);
+
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(
+                gameObject.GetComponent<SpriteRenderer>().color.r,
+                gameObject.GetComponent<SpriteRenderer>().color.g,
+                gameObject.GetComponent<SpriteRenderer>().color.b,
+                1f);
         }
         else if (collision.gameObject.tag == "Inside")
         {
-            snow.startColor = new Color(snow.startColor.r, snow.startColor.g, snow.startColor.b, 0);
             inside = true;
             audioSource.Stop();
-            /*for (int i = 0; i < food; i++)
-            {
-                Manager.instance.food++;
-                //food = 0;
-            }
-            for (int i = 0; i < gas; i++)
-            {
-                Manager.instance.gas++;
-                //gas = 0;
-            }*/
+
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(
+                gameObject.GetComponent<SpriteRenderer>().color.r,
+                gameObject.GetComponent<SpriteRenderer>().color.g,
+                gameObject.GetComponent<SpriteRenderer>().color.b,
+                0);
+
             Manager.instance.UpdateResources();
             Manager.instance.changeDay();
         }
@@ -169,11 +169,13 @@ public class Player : MonoBehaviour
         {
             food++;
             Destroy(collision.gameObject);
+            pickup.Play();
         }
         else if (collision.gameObject.tag == "gas")
         {
             gas++;
             Destroy(collision.gameObject);
+            pickup.Play();
         }
         else if (collision.gameObject.tag == "npc")
         {
@@ -189,6 +191,7 @@ public class Player : MonoBehaviour
         {
             time = 0;
             temperature--;
+            audioSource.volume += 0.03f;
         }
     }
 
@@ -200,6 +203,7 @@ public class Player : MonoBehaviour
             {
                 time = 0;
                 temperature++;
+                audioSource.volume -= 0.03f;
             }
         }
     }
@@ -209,5 +213,13 @@ public class Player : MonoBehaviour
         snow.gameObject.SetActive(false);
         audioSource.gameObject.SetActive(false);
         thermometer.instance.gameObject.SetActive(false);
+    }
+
+    //we deactivate the snowfall, the breathing and the thermometer
+    void Day1()
+    {
+        snow.gameObject.SetActive(true);
+        audioSource.gameObject.SetActive(true);
+        thermometer.instance.gameObject.SetActive(true);
     }
 }

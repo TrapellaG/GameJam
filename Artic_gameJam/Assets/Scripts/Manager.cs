@@ -27,6 +27,7 @@ public class Manager : MonoBehaviour {
 
     public int necesaryGas;
     public Text gasMeter;
+    public Image gas;
 
     public int necesaryFood;
     public Text foodMeter;
@@ -39,11 +40,15 @@ public class Manager : MonoBehaviour {
     public GameObject transitionScreen;
     public GameObject transitionText;
 
+    public Text timer;
+
     // Use this for initialization
     void Start () {
         conversation.text = "";
         UpdateResources();
         npc = new GameObject[4];
+
+        SetLevel();
 	}
 
     private void Update()
@@ -68,16 +73,23 @@ public class Manager : MonoBehaviour {
 
             if (time > 6)
             {
+                UpdateResources();
+
+                if (day > 1)
+                {
+                    SceneManager.LoadScene("Final");
+                }
                 transitionScreen.SetActive(false);
                 transitionText.SetActive(false);
                 time = 0;
                 transition = false;
+                
+                SetLevel();
             }
             else if (time > 2)
             {
-                transitionText.GetComponent<Text>().text = "Day " + day.ToString();
+                transitionText.GetComponent<Text>().text = "Day " + (day + 1).ToString();
                 transitionText.SetActive(true);
-                //transitionText.GetComponent<Obscure>().fadeinText();
             }
 
         }
@@ -85,26 +97,42 @@ public class Manager : MonoBehaviour {
     }
 
     public void changeDay () {
-        if (Timer.instance.time <= 0)
+
+        if (day == 0)
         {
-            if (Player.instance.gas < necesaryGas)
+            if (Player.instance.food > 0)
             {
-                GameOver();
+                Player.instance.food -= necesaryFood;
+
+
+                transition = true;
+                day++;
+
+                Timer.instance.time = Timer.instance.maxTime;
             }
-            else if (Player.instance.food < necesaryFood)
+        }
+        else
+        {
+            if (Timer.instance.time <= 0)
             {
-                GameOver();
+                if (Player.instance.gas < necesaryGas)
+                {
+                    GameOver();
+                }
+                else if (Player.instance.food < necesaryFood)
+                {
+                    GameOver();
+                }   
             }
+            else if (Player.instance.gas >= necesaryGas)
+            {
+                if (Player.instance.food >= necesaryFood)
+                {
+                    day++;
 
-            Player.instance.food -= necesaryFood;
-            Player.instance.gas -= necesaryGas;
-
-            UpdateResources();
-
-            Timer.instance.maxTime -= 10;
-            Timer.instance.time = Timer.instance.maxTime;
-
-            day++;
+                    transition = true;
+                }
+            }
         }
 	}
 
@@ -116,7 +144,18 @@ public class Manager : MonoBehaviour {
 
     public void SetLevel()
     {
-        
+        if (day == 0)
+        {
+            gasMeter.gameObject.SetActive(false);
+            gas.gameObject.SetActive(false);
+            timer.gameObject.SetActive(false);
+        }
+        else
+        {
+            gasMeter.gameObject.SetActive(true);
+            gas.gameObject.SetActive(true);
+            timer.gameObject.SetActive(true);
+        }
     }
 
     public void GameOver()

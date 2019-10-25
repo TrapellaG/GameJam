@@ -22,8 +22,8 @@ public class Timer : MonoBehaviour {
 
     Canvas timer;
     public Text countdown;
-    public float time = 200.0f; 
-    public float maxTime = 200.0f; 
+    public float time; 
+    public float maxTime; 
 
 	// Use this for initialization
 	void Start ()
@@ -37,9 +37,9 @@ public class Timer : MonoBehaviour {
         time -= Time.deltaTime;
         countdown.text = ("time: " + (int)time);
 
-        if(time == 0)
+        /*if(time == 0)
         {
             time = 200;
-        }
+        }*/
 	}
 }
